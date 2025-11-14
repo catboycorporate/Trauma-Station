@@ -22,12 +22,41 @@
     rules:
     - id: Thief
       prob: 0.5
+    #- id: SubWizard # Trauma - not real
+    #  prob: 0.05
+    - id: Xenoborgs
+      prob: 0.05
+    # <Goob>
     - id: Heretic # goob edit
       prob: 0.2
     - id: Devil # Goob
       prob: 0.02
     - id: Shadowling # Goob
       prob: 0.09
+    # </Goob>
+
+- type: entity
+  parent: BaseGameRule
+  id: SubGamemodesRuleNoWizard
+  components:
+  - type: SubGamemodes
+    rules:
+    - id: Thief
+      prob: 0.5
+    - id: Xenoborgs
+      prob: 0.05
+
+- type: entity
+  parent: BaseGameRule
+  id: SubGamemodesRuleNoXenoborg
+  components:
+  - type: SubGamemodes
+    rules:
+    - id: Thief
+      prob: 0.5
+    - id: SubWizard
+      prob: 0.05
+>>>>>>> e5daa54e79 (Xenoborgs part 7 (#40042))
 
 - type: entity
   parent: BaseGameRule
