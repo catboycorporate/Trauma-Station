@@ -654,3 +654,11 @@ Entries:
       message: winter coats are now consistently armor
   id: 73
   time: '2025-11-15T11:18:05.0000000+00:00'
+- author: deltanedas
+  changes:
+    - type: Fix
+      message: >-
+        Fixed vulp beheading making everyone blackscreen, resuming beheading
+        vulps.
+  id: 74
+  time: '2025-11-15T18:13:22.0000000+00:00'
