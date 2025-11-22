@@ -682,3 +682,9 @@ Entries:
         vendor.
   id: 77
   time: '2025-11-16T20:26:56.0000000+00:00'
+- author: deltanedas
+  changes:
+    - type: Fix
+      message: Fixed batong not having delayed knockdown.
+  id: 78
+  time: '2025-11-22T22:15:52.0000000+00:00'
