@@ -73,8 +73,7 @@
   - type: RechargeableBlocking
     chargedRechargeRate: 0
     dischargedRechargeRate: 1
-  - type: BatterySelfRecharger
-    autoRecharge: true
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 0
 
 - type: entity
@@ -115,6 +114,5 @@
   - type: RechargeableBlocking
     chargedRechargeRate: 0
     dischargedRechargeRate: 1.5
-  - type: BatterySelfRecharger
-    autoRecharge: true
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 0

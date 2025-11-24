@@ -15,6 +15,11 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Power.EntitySystems;
 
+/// <summary>
+/// Responsible for <see cref="BatteryComponent"/>.
+/// Unpredicted equivalent of <see cref="PredictedBatterySystem"/>.
+/// If you make changes to this make sure to keep the two consistent.
+/// </summary>
 [UsedImplicitly]
 public sealed partial class BatterySystem : SharedBatterySystem
 {
@@ -29,7 +34,8 @@ public sealed partial class BatterySystem : SharedBatterySystem
 
         _disabledQuery = GetEntityQuery<EmpDisabledComponent>(); // Goob
 
-        SubscribeLocalEvent<ExaminableBatteryComponent, ExaminedEvent>(OnExamine);
+        SubscribeLocalEvent<BatteryComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<BatteryComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<BatteryComponent, RejuvenateEvent>(OnBatteryRejuvenate);
         SubscribeLocalEvent<PowerNetworkBatteryComponent, RejuvenateEvent>(OnNetBatteryRejuvenate);
         SubscribeLocalEvent<BatteryComponent, PriceCalculationEvent>(CalculateBatteryPrice);
@@ -40,27 +46,31 @@ public sealed partial class BatterySystem : SharedBatterySystem
         SubscribeLocalEvent<NetworkBatteryPostSync>(PostSync);
     }
 
+    private void OnInit(Entity<BatteryComponent> ent, ref ComponentInit args)
+    {
+        DebugTools.Assert(!HasComp<PredictedBatteryComponent>(ent), $"{ent} has both BatteryComponent and PredictedBatteryComponent");
+    }
     private void OnNetBatteryRejuvenate(Entity<PowerNetworkBatteryComponent> ent, ref RejuvenateEvent args)
     {
         ent.Comp.NetworkBattery.CurrentStorage = ent.Comp.NetworkBattery.Capacity;
     }
-
     private void OnBatteryRejuvenate(Entity<BatteryComponent> ent, ref RejuvenateEvent args)
     {
         SetCharge(ent.AsNullable(), ent.Comp.MaxCharge);
     }
 
-    private void OnExamine(Entity<ExaminableBatteryComponent> ent, ref ExaminedEvent args)
+    private void OnExamine(Entity<BatteryComponent> ent, ref ExaminedEvent args)
     {
         if (!args.IsInDetailsRange)
             return;
 
-        if (!TryComp<BatteryComponent>(ent, out var battery))
+        if (!HasComp<ExaminableBatteryComponent>(ent))
             return;
 
         var chargePercentRounded = 0;
-        if (battery.MaxCharge != 0)
-            chargePercentRounded = (int)(100 * battery.CurrentCharge / battery.MaxCharge);
+        if (ent.Comp.MaxCharge != 0)
+            chargePercentRounded = (int)(100 * ent.Comp.CurrentCharge / ent.Comp.MaxCharge);
+
         args.PushMarkup(
             Loc.GetString(
                 "examinable-battery-component-examine-detail",
@@ -132,26 +142,26 @@ public sealed partial class BatterySystem : SharedBatterySystem
 
             SetCharge((uid, bat), bat.CurrentCharge + comp.AutoRechargeRate * frameTime);
         }
-
-        // <Goob>
-        public int GetChargeDifference(EntityUid uid, BatteryComponent? battery = null) // Debug
-        {
-            if (!Resolve(uid, ref battery))
-                return 0;
-
-            return Convert.ToInt32(battery.MaxCharge - battery.CurrentCharge);
-        }
-        public float AddCharge(EntityUid uid, float value, BatteryComponent? battery = null)
-        {
-            if (value <= 0 || !Resolve(uid, ref battery))
-                return 0;
-
-            var newValue = Math.Clamp(battery.CurrentCharge + value, 0, battery.MaxCharge);
-            battery.CurrentCharge = newValue;
-            var ev = new ChargeChangedEvent(battery.CurrentCharge, battery.MaxCharge);
-            RaiseLocalEvent(uid, ref ev);
-            return newValue;
-        }
-        // </Goob>
     }
+
+    // <Goob>
+    public int GetChargeDifference(EntityUid uid, BatteryComponent? battery = null) // Debug
+    {
+        if (!Resolve(uid, ref battery))
+            return 0;
+
+        return Convert.ToInt32(battery.MaxCharge - battery.CurrentCharge);
+    }
+    public float AddCharge(EntityUid uid, float value, BatteryComponent? battery = null)
+    {
+        if (value <= 0 || !Resolve(uid, ref battery))
+            return 0;
+
+        var newValue = Math.Clamp(battery.CurrentCharge + value, 0, battery.MaxCharge);
+        battery.CurrentCharge = newValue;
+        var ev = new ChargeChangedEvent(battery.CurrentCharge, battery.MaxCharge);
+        RaiseLocalEvent(uid, ref ev);
+        return newValue;
+    }
+    // </Goob>
 }

@@ -65,10 +65,11 @@
   components:
   - type: Organ
     onAdd:
-    - type: HitscanBatteryAmmoProvider
+    - type: BatteryAmmoProvider
       proto: RedLightLaser
       fireCost: 50
-    - type: BatterySelfRecharger
+      examinable: false
+    - type: PredictedBatterySelfRecharger
       autoRechargeRate: 25
     - type: Battery
       maxCharge: 100

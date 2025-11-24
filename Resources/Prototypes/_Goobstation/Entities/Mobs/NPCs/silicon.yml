@@ -131,11 +131,10 @@
         - MobMask
         layer:
         - MobLayer
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletPistol
     fireCost: 50
-  - type: BatterySelfRecharger
-    autoRecharge: true
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 50
   - type: Battery
     maxCharge: 1000
@@ -179,7 +178,7 @@
     noMovementLayers:
       movement:
         state: nukebot
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BaseBulletIncendiary
     fireCost: 50
   - type: Gun

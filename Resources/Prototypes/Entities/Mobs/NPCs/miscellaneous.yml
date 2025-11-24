@@ -49,7 +49,7 @@
     - type: Tag
       tags:
         - FootstepSound
-    # Trauma - moved HitscanBatteryAmmoProvider to Gun into OrganLaserEyes
+    # Trauma - moved BatteryAmmoProvider to Gun into OrganLaserEyes
     - type: CombatMode
     - type: InteractionPopup
       successChance: 0.3

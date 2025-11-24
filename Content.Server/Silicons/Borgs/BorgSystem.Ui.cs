@@ -1,14 +1,3 @@
-// SPDX-FileCopyrightText: 2023 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 TemporalOroboros <TemporalOroboros@gmail.com>
-// SPDX-FileCopyrightText: 2024 Ed <96445749+TheShuEd@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using System.Linq;
 using Content.Shared.UserInterface;
 using Content.Shared.CCVar;
@@ -102,6 +91,43 @@ public sealed partial class BorgSystem
         UpdateUI(uid, component);
     }
 
+    public void UpdateBattery(Entity<BorgChassisComponent> ent)
+    {
+        UpdateBatteryAlert(ent);
+
+        // if we aren't drawing and suddenly get enough power to draw again, reeanble.
+        if (_powerCell.HasDrawCharge(ent.Owner))
+        {
+            Toggle.TryActivate(ent.Owner);
+        }
+
+        UpdateUI(ent, ent);
+    }
+
+    // TODO: Move to client so we don't have to network this periodically.
+    private void UpdateBatteryAlert(Entity<BorgChassisComponent> ent, PowerCellSlotComponent? slotComponent = null)
+    {
+        if (!_powerCell.TryGetBatteryFromSlot((ent.Owner, slotComponent), out var battery))
+        {
+            _alerts.ClearAlert(ent.Owner, ent.Comp.BatteryAlert);
+            _alerts.ShowAlert(ent.Owner, ent.Comp.NoBatteryAlert);
+            return;
+        }
+
+        var chargePercent = (short)MathF.Round(_battery.GetCharge(battery.Value.AsNullable()) / battery.Value.Comp.MaxCharge * 10f);
+
+        // we make sure 0 only shows if they have absolutely no battery.
+        // also account for floating point imprecision
+        if (chargePercent == 0 && _powerCell.HasDrawCharge((ent.Owner, null, slotComponent)))
+        {
+            chargePercent = 1;
+        }
+
+        _alerts.ClearAlert(ent.Owner, ent.Comp.NoBatteryAlert);
+        _alerts.ShowAlert(ent.Owner, ent.Comp.BatteryAlert, chargePercent);
+    }
+
+    // TODO: Component states and update this on the client
     public void UpdateUI(EntityUid uid, BorgChassisComponent? component = null)
     {
         if (!Resolve(uid, ref component))
@@ -112,10 +138,26 @@ public sealed partial class BorgSystem
         if (_powerCell.TryGetBatteryFromSlot(uid, out var battery))
         {
             hasBattery = true;
-            chargePercent = battery.CurrentCharge / battery.MaxCharge;
+            chargePercent = _battery.GetCharge(battery.Value.AsNullable()) / battery.Value.Comp.MaxCharge;
         }
 
         var state = new BorgBuiState(chargePercent, hasBattery);
         _ui.SetUiState(uid, BorgUiKey.Key, state);
+    }
+
+    // periodically update the charge indicator
+    // TODO: Move this to the client.
+    public void UpdateBattery(float frameTime)
+    {
+        var curTime = _timing.CurTime;
+        var query = EntityQueryEnumerator<BorgChassisComponent>();
+        while (query.MoveNext(out var uid, out var borgChassis))
+        {
+            if (curTime < borgChassis.NextBatteryUpdate)
+                continue;
+
+            UpdateBattery((uid, borgChassis));
+            borgChassis.NextBatteryUpdate = curTime + TimeSpan.FromSeconds(1);
+        }
     }
 }

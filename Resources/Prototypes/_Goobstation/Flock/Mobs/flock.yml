@@ -38,10 +38,10 @@
   id: MobFlockDrone
   parent: MobFlockBase
   components:
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletFlock
     fireCost: 50
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 50
   - type: Battery
@@ -49,7 +49,7 @@
     startingCharge: 1000
   - type: Gun
     projectileSpeed: 10
-    fireRate: 0.2 
+    fireRate: 0.2
     useKey: false
     selectedMode: SemiAuto
     availableModes:
@@ -133,4 +133,3 @@
         - MobMask
         layer:
         - MobLayer
-

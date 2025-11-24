@@ -31,8 +31,7 @@
       path: /Audio/_Mono/Weapons/Guns/Gunshots/slammer.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: BatterySelfRecharger
-    autoRecharge: true
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 550
   - type: SpaceArtillery
     powerChargeRate: 100
@@ -41,7 +40,7 @@
   - type: CombatMode
     isInCombatMode: true
   - type: Airtight
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: 20mmBulletArmorPiercing
     fireCost: 15
   - type: RadiationBlocker
@@ -83,15 +82,14 @@
       path: /Audio/_Mono/Weapons/Guns/Gunshots/mortar.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: BatterySelfRecharger
-    autoRecharge: true
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 220
   - type: SpaceArtillery
     powerChargeRate: 220
     powerUsePassive: 750
     powerUseActive: 0
   - type: Actions
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: ShipDravonProjectile
     fireCost: 250
   - type: RadarBlip
@@ -136,15 +134,14 @@
       path: /Audio/_Mono/Weapons/Guns/Gunshots/120mm_mortar.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: BatterySelfRecharger
-    autoRecharge: true
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 125
   - type: SpaceArtillery
     powerChargeRate: 125
     powerUsePassive: 600
     powerUseActive: 0
   - type: Actions
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: 90mmBulletArmorPiercing
     fireCost: 50
   - type: RadarBlip
@@ -184,15 +181,14 @@
       path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: BatterySelfRecharger
-    autoRecharge: true
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 214
   - type: SpaceArtillery
     powerChargeRate: 214
     powerUsePassive: 3500
     powerUseActive: 0
   - type: Actions
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: ShipTarnyxProjectile
     fireCost: 17500 # low shot weapon moved back to the original spot
   - type: RadarBlip
@@ -249,15 +245,14 @@
       path: /Audio/_Mono/Weapons/Guns/Gunshots/cannon.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: BatterySelfRecharger
-    autoRecharge: true
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 12000
   - type: SpaceArtillery
     powerChargeRate: 12000
     powerUsePassive: 1500
     powerUseActive: 0
   - type: Actions
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: ShipCyrexaProjectile
     fireCost: 6000
   - type: RadarBlip
@@ -314,15 +309,14 @@
       path: /Audio/_Mono/Weapons/Guns/Gunshots/cannon.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: BatterySelfRecharger
-    autoRecharge: true
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 12000
   - type: SpaceArtillery
     powerChargeRate: 12000
     powerUsePassive: 1500
     powerUseActive: 0
   - type: Actions
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: ShipHadesProjectile
     fireCost: 6000
   - type: RadarBlip
@@ -362,15 +356,14 @@
       path: /Audio/_Mono/Weapons/Guns/Gunshots/leviathan_fire.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
-  - type: BatterySelfRecharger
-    autoRecharge: true
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 350
   - type: SpaceArtillery
     powerChargeRate: 350
     powerUsePassive: 1000
     powerUseActive: 7500
   - type: Actions
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: ShipRailgunProjectile
     fireCost: 1500
   - type: Fixtures
@@ -450,8 +443,7 @@
       path: /Audio/_Mono/Weapons/Guns/Gunshots/cannon.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: BatterySelfRecharger
-    autoRecharge: true
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 12000
     autoRechargePause: true
   - type: SpaceArtillery
@@ -459,7 +451,7 @@
     powerUsePassive: 1500
     powerUseActive: 0
   - type: Actions
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: ShipBoforsProjectile
     fireCost: 6000
   - type: RadarBlip
@@ -511,8 +503,7 @@
       path: /Audio/_Mono/Weapons/Guns/Gunshots/cannon.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: BatterySelfRecharger
-    autoRecharge: true
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 12000
     autoRechargePause: true
   - type: SpaceArtillery
@@ -520,7 +511,7 @@
     powerUsePassive: 1500
     powerUseActive: 0
   - type: Actions
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: ShipKargilProjectile
     fireCost: 6000
   - type: RadarBlip

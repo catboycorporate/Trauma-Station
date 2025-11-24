@@ -131,7 +131,7 @@
     startingCharge: 600
   - type: MaterialEnergy
     materialWhiteList: [Plasma]
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletPlasmaCutterStrong
     fireCost: 100
   - type: WeaponRandomExplode
@@ -223,12 +223,11 @@
     slots:
     - suitStorage
     - Belt
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletDisabler
     fireCost: 50
   - type: PacifismAllowedGun
-  - type: BatterySelfRecharger
-    autoRecharge: true
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 40
 
 - type: entity
@@ -260,14 +259,13 @@
       slots:
         - suitStorage
         - Belt
-    - type: ProjectileBatteryAmmoProvider
+    - type: BatteryAmmoProvider
       proto: BulletSyndicateDisabler
       fireCost: 100
     - type: Multishot
       spreadMultiplier: 1.25
       spreadAddition: 10
-    - type: BatterySelfRecharger
-      autoRecharge: true
+    - type: PredictedBatterySelfRecharger
       autoRechargeRate: 50
 
 - type: entity
@@ -279,8 +277,7 @@
   - type: Tag
     tags:
     - Rifle
-  - type: BatterySelfRecharger
-    autoRecharge: true
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 80
 
 - type: entity
@@ -351,7 +348,7 @@
   - type: Battery
     maxCharge: 1000
     startingCharge: 1000
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletDetain
     fireCost: 80
   - type: AmmoSelector
@@ -421,8 +418,7 @@
     canCreateVacuum: false
     deleteAfterExplosion: false
     repeatable: true
-  - type: BatterySelfRecharger
-    autoRecharge: true
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 50
     autoRechargePause: true
     autoRechargePauseTime: 40
@@ -460,7 +456,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
     soundEmpty:
       path: /Audio/_DV/Weapons/Guns/Empty/dry_fire.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RifleBulletEnergyGunIon # yes i just copy cr-2 ion bullet
     fireCost: 40
   - type: Battery

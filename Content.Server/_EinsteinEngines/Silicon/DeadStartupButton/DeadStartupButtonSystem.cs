@@ -8,10 +8,10 @@
 using Content.Server.Chat.Systems;
 using Content.Server.Lightning;
 using Content.Server.Popups;
-using Content.Server.PowerCell;
+using Content.Shared.PowerCell;
 using Content.Server._EinsteinEngines.Silicon.Charge;
 using Content.Server.Lightning.Components; // Goobstation - Fix IPC shock loops
-using Content.Server.Power.EntitySystems; // Goobstation - Energycrit
+using Content.Shared.Power.EntitySystems; // Goobstation - Energycrit
 using Content.Shared._EinsteinEngines.Silicon.DeadStartupButton;
 using Content.Shared.Audio;
 using Content.Shared.Damage.Components;
@@ -35,7 +35,7 @@ public sealed class DeadStartupButtonSystem : SharedDeadStartupButtonSystem
     [Dependency] private readonly SiliconChargeSystem _siliconChargeSystem = default!;
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
     [Dependency] private readonly ChatSystem _chatSystem = default!;
-    [Dependency] private readonly BatterySystem _battery = default!; // Goobstation - Energycrit
+    [Dependency] private readonly PredictedBatterySystem _battery = default!; // Goobstation - Energycrit
 
     /// <inheritdoc/>
     public override void Initialize()

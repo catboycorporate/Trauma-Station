@@ -128,9 +128,8 @@
   - type: RechargeableBlocking
     dischargedRechargeRate: 100
     chargedRechargeRate: 150
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 150
-    autoRecharge: true
   - type: Item
     size: Normal
   - type: Tag
