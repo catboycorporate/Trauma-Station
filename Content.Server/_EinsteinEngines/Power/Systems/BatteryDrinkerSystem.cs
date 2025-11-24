@@ -61,7 +61,7 @@ public sealed class BatteryDrinkerSystem : SharedBatteryDrinkerSystem
 
         if (!TryComp<BatteryDrinkerComponent>(args.User, out var drinkerComp) ||
             // Goobstation Start - Energycrit
-            _whitelist.IsBlacklistPass(drinkerComp.Blacklist, uid) ||
+            _whitelist.IsWhitelistPass(drinkerComp.Blacklist, uid) ||
             !SearchForDrinker(args.User, out _) ||
             !SearchForSource(uid, out var battery) ||
             !TestDrinkableBattery(battery.Value, drinkerComp))
