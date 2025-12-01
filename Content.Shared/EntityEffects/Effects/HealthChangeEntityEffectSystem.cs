@@ -1,17 +1,16 @@
+// <Trauma>
+using Content.Shared._Shitmed.Damage;
+using Content.Shared._Shitmed.EntityEffects.Effects;
+using Content.Shared._Shitmed.Targeting;
+using Content.Shared.Heretic;
+using Content.Shared.Temperature.Components;
+// </Trauma>
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Localizations;
 using Robust.Shared.Prototypes;
-
-// Shitmed Changes
-using Content.Shared._Shitmed.Damage;
-using Content.Shared._Shitmed.EntityEffects.Effects;
-using Content.Shared._Shitmed.Targeting;
-using Content.Shared.Heretic;
-
-//using Content.Shared.Temperature.Components;
 
 namespace Content.Shared.EntityEffects.Effects;
 
@@ -30,28 +29,57 @@ public sealed partial class HealthChangeEntityEffectSystem : EntityEffectSystem<
 
         damageSpec *= args.Scale;
 
-        // Goobstation start
+        // <Shitmed>
+        if (args.Effect.ScaleByTemperature is {} scaleTemp)
+        {
+            damageSpec *= TryComp<TemperatureComponent>(entity, out var temp)
+                ? scaleTemp.GetEfficiencyMultiplier(temp.CurrentTemperature, args.Scale, false)
+                : FixedPoint2.Zero;
+        }
+        // </Shitmed>
+
+        // <Goob>
+        // heretics can heal instead of being poisoned
         var ev = new ImmuneToPoisonDamageEvent();
-        EntityManager.EventBus.RaiseLocalEvent(entity, ref ev);
+        RaiseLocalEvent(entity, ref ev);
         if (ev.Immune)
         {
             damageSpec = DamageSpecifier.GetNegative(damageSpec);
             if (damageSpec.GetTotal() == FixedPoint2.Zero)
                 return;
         }
-        // Goobstation end
 
-        _damageable.TryChangeDamage(
+        // Split damage into positive (actual damage) and negative (healing) so we can
+        // target damage to vital parts while keeping healing behaviour unchanged.
+        var positive = DamageSpecifier.GetPositive(damageSpec);
+        var negative = DamageSpecifier.GetNegative(damageSpec);
+        if (positive.AnyPositive())
+        {
+            _damageable.TryChangeDamage(
                 entity.AsNullable(),
-                damageSpec,
+                positive,
                 args.Effect.IgnoreResistances,
                 interruptsDoAfters: false,
-                // <Shitmed>
+                // Apply positive damage to vital parts
+                targetPart: TargetBodyPart.Vital,
+                ignoreBlockers: args.Effect.IgnoreBlockers,
+                splitDamage: args.Effect.SplitDamage);
+        }
+
+        // Apply healing (negative) with original targeting behavior
+        if (!negative.Empty)
+        {
+            _damageable.TryChangeDamage(
+                entity.AsNullable(),
+                negative,
+                args.Effect.IgnoreResistances,
+                interruptsDoAfters: false,
+                // Apply positive damage to vital parts
                 targetPart: args.Effect.UseTargeting ? args.Effect.TargetPart : null,
                 ignoreBlockers: args.Effect.IgnoreBlockers,
-                splitDamage: args.Effect.SplitDamage
-                // </Shitmed>
-                );
+                splitDamage: args.Effect.SplitDamage);
+        }
+        // </Goob>
     }
 }
 
@@ -94,18 +122,6 @@ public sealed partial class HealthChange : EntityEffectBase<HealthChange>
             var deals = false;
 
             var damageSpec = new DamageSpecifier(Damage);
-
-            // <Shitmed>
-            /* Trauma - disabled until Temperature is networked in shared
-            if (ScaleByTemperature.HasValue)
-            {
-                if (!args.EntityManager.TryGetComponent<TemperatureComponent>(args.TargetEntity, out var temp))
-                    scale = FixedPoint2.Zero;
-                else
-                    scale *= ScaleByTemperature.Value.GetEfficiencyMultiplier(temp.CurrentTemperature, scale, false);
-            }
-            */
-            // </Shitmed>
 
             var universalReagentDamageModifier = entSys.GetEntitySystem<Damage.Systems.DamageableSystem>().UniversalReagentDamageModifier;
             var universalReagentHealModifier = entSys.GetEntitySystem<Damage.Systems.DamageableSystem>().UniversalReagentHealModifier;

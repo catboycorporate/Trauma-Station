@@ -431,7 +431,7 @@ public sealed class RespiratorSystem : EntitySystem
             }
         }
 
-        _damageableSys.ChangeDamage(ent.Owner, HasComp<DebrainedComponent>(ent) ? ent.Comp.Damage * 4.5f : ent.Comp.Damage, targetPart: TargetBodyPart.All, interruptsDoAfters: false, ignoreResistances: true);
+        _damageableSys.ChangeDamage(ent.Owner, HasComp<DebrainedComponent>(ent) ? ent.Comp.Damage * 4.5f : ent.Comp.Damage, targetPart: TargetBodyPart.Vital, interruptsDoAfters: false, ignoreResistances: true);
         // </Shitmed>
 
         if (ent.Comp.SuffocationCycles < ent.Comp.SuffocationCycleThreshold)
