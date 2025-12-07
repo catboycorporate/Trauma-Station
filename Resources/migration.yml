@@ -961,7 +961,6 @@ PrefilledSyringe: Syringe
 BibleTanakh: null
 BibleSatanic: null
 
-
 # 2025-10-08
 ClothingBeltAssault: ClothingBeltMilitaryWebbing
 WarpPointBombing: null
@@ -980,6 +979,9 @@ AirlockBlueshieldOfficerCommandGlassLocked: AirlockCentralCommandGlassLocked
 
 # 2025-10-28
 DrinkKiraSpecial: DrinkOrangeLimeSodaGlass
+
+# 2025-12-05
+GlowstickBase: GlowstickGreen
 
 # 2025-12-06
 SpawnPointZookeeper: null
