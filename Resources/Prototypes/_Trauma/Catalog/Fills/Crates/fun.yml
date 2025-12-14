@@ -1,12 +1,3 @@
-# keep the weight synced with AllPlushiesTable
-- type: entityTable
-  id: AllPlushiesTrauma
-  table: !type:GroupSelector
-    children:
-    - id: PlushieBingle
-    - id: PlushieAbductor
-    - id: FaceHuggerToys
-
 - type: entity
   parent: CratePlastic
   id: CrateFunSprayPaints
