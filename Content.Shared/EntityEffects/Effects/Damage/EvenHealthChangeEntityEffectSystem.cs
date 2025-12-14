@@ -1,56 +1,27 @@
-using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Localizations;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
-using Content.Shared._Shitmed.Damage; // Shitmed
 
-namespace Content.Shared.EntityEffects.Effects;
+namespace Content.Shared.EntityEffects.Effects.Damage;
 
 /// <summary>
-/// Evenly adjust the damage types in a damage group by up to a specified total on this entity.
+/// Evenly heal the damage types in a damage group by up to a specified total on this entity.
 /// Total adjustment is modified by scale.
 /// </summary>
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class EvenHealthChangeEntityEffectSystem : EntityEffectSystem<DamageableComponent, EvenHealthChange>
 {
     [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
 
     protected override void Effect(Entity<DamageableComponent> entity, ref EntityEffectEvent<EvenHealthChange> args)
     {
-        var damageSpec = new DamageSpecifier();
-
         foreach (var (group, amount) in args.Effect.Damage)
         {
-            var groupProto = _proto.Index(group);
-            var groupDamage = new Dictionary<string, FixedPoint2>();
-            foreach (var damageId in groupProto.DamageTypes)
-            {
-                var damageAmount = entity.Comp.Damage.DamageDict.GetValueOrDefault(damageId);
-                if (damageAmount != FixedPoint2.Zero)
-                    groupDamage.Add(damageId, damageAmount);
-            }
-
-            var sum = groupDamage.Values.Sum();
-            foreach (var (damageId, damageAmount) in groupDamage)
-            {
-                var existing = damageSpec.DamageDict.GetOrNew(damageId);
-                damageSpec.DamageDict[damageId] = existing + damageAmount / sum * amount;
-            }
+            _damageable.HealEvenly(entity.AsNullable(), amount * args.Scale, group);
         }
-
-        damageSpec *= args.Scale;
-
-        _damageable.TryChangeDamage(
-            entity.AsNullable(),
-            damageSpec,
-            args.Effect.IgnoreResistances,
-            interruptsDoAfters: false,
-            splitDamage: args.Effect.SplitDamage); // Shitmed Change
     }
 }
 
@@ -68,12 +39,6 @@ public sealed partial class EvenHealthChange : EntityEffectBase<EvenHealthChange
     /// </summary>
     [DataField]
     public bool IgnoreResistances = true;
-
-    /// <summary>
-    /// Shitmed - how to split healing, by default it won't heal artifical limbs.
-    /// </summary>
-    [DataField]
-    public SplitDamageBehavior SplitDamage = SplitDamageBehavior.SplitEnsureAllOrganic;
 
     public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
     {
