@@ -188,7 +188,11 @@ public sealed partial class ChangelingSystem
 
         var dmg = new DamageSpecifier(_proto.Index(AbsorbedDamageGroup), 200);
         _damage.TryChangeDamage(target, dmg, true, false, targetPart: TargetBodyPart.All); // Shitmed Change
-        _blood.ChangeBloodReagent(target, "FerrochromicAcid");
+        if (TryComp<BloodstreamComponent>(target, out var blood))
+        {
+            var volume = blood.BloodReferenceSolution.Volume;
+            _blood.ChangeBloodReagents((target, blood), new([new("FerrochromicAcid", volume)]));
+        }
         _blood.SpillAllSolutions(target);
 
         EnsureComp<AbsorbedComponent>(target);
@@ -724,7 +728,11 @@ public sealed partial class ChangelingSystem
         EnsureComp<AbsorbedComponent>(target);
         var dmg = new DamageSpecifier(_proto.Index(AbsorbedDamageGroup), 200);
         _damage.TryChangeDamage(target, dmg, false, false, targetPart: TargetBodyPart.All); // Shitmed Change
-        _blood.ChangeBloodReagent(target, "FerrochromicAcid");
+        if (TryComp<BloodstreamComponent>(target, out var blood))
+        {
+            var volume = blood.BloodReferenceSolution.Volume;
+            _blood.ChangeBloodReagents((target, blood), new([new("FerrochromicAcid", volume)]));
+        }
         _blood.SpillAllSolutions(target);
 
         PlayMeatySound(uid, comp);

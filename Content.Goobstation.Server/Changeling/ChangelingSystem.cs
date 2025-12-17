@@ -847,8 +847,13 @@ public sealed partial class ChangelingSystem : SharedChangelingSystem
 
         // show alerts
         UpdateChemicals(uid, comp, 0);
+
+        if (!TryComp<BloodstreamComponent>(uid, out var blood))
+            return;
+
         // make their blood unreal
-        _blood.ChangeBloodReagent(uid, "BloodChangeling");
+        var volume = blood.BloodReferenceSolution.Volume;
+        _blood.ChangeBloodReagents((uid, blood), new([new("BloodChangeling", volume)]));
     }
 
     private void OnMobStateChange(EntityUid uid, ChangelingIdentityComponent comp, ref MobStateChangedEvent args)

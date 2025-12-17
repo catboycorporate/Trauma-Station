@@ -1,3 +1,6 @@
+// <Trauma>
+using Content.Trauma.Common.Botany;
+// </Trauma>
 using Content.Server.Botany;
 using Content.Server.Botany.Components;
 using Content.Shared.EntityEffects;
