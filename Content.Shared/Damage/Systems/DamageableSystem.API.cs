@@ -165,18 +165,7 @@ public sealed partial class DamageableSystem
         if (damage.Empty)
             return damageDone;
 
-        // <Goob>
-        var vitalDamage = new DamageSpecifier(damage);
-        vitalDamage -= vitalDamage;
-        vitalDamage.TrimZeros();
-        foreach (var type in _vitalOnlyDamageTypes)
-        {
-            vitalDamage += new DamageSpecifier(_prototypeManager.Index(type), 0f);
-        }
-        vitalDamage.ExclusiveAdd(damage);
-        vitalDamage.TrimZeros();
-        // </Goob>
-
+        var vitalDamage = GetVitalDamage(damage); // Goob
         var before = new BeforeDamageChangedEvent(damage, origin,
             false, canBeCancelled, targetPart); // Shitmed
         RaiseLocalEvent(ent, ref before);
@@ -187,8 +176,8 @@ public sealed partial class DamageableSystem
         // <Goob> - For entities with a body, route damage through body parts and then sum it up
         if (_bodyQuery.TryComp(ent, out var body) && body.BodyType == BodyType.Complex)
         {
-            damage -= vitalDamage; // Goobstation
-            damage.TrimZeros(); // Goobstation
+            damage -= vitalDamage;
+            damage.TrimZeros();
 
             var appliedDamage = ApplyDamageToBodyParts(ent, damage, origin, ignoreResistances,
                 interruptsDoAfters, targetPart, partMultiplier, ignoreBlockers, splitDamage, canMiss);

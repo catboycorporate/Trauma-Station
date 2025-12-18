@@ -401,21 +401,16 @@ public sealed class HealingSystem : EntitySystem
                         continue;
                     }
 
-                    var damageChanged = _damageable.TryChangeDamage(targetedWoundable, healingLeft, true, origin: args.User, ignoreBlockers: healedBleed || healing.BloodlossModifier == 0); // GOOBEDIT
-
-                    if (damageChanged is not null)
-                    {
-                        healedTotal += -damageChanged;
-                        healingLeft += -damageChanged;
-                    }
+                    var damageChanged = _damageable.ChangeDamage(targetedWoundable, healingLeft, true, origin: args.User, ignoreBlockers: healedBleed || healing.BloodlossModifier == 0); // GOOBEDIT
+                    healedTotal -= damageChanged;
+                    healingLeft -= damageChanged;
                 }
             }
         }
         else
         {
-            var healed = _damageable.TryChangeDamage(ent, healing.Damage * _damageable.UniversalTopicalsHealModifier, true, origin: args.User);
-            if (healed != null)
-                healingLeft -= healed;
+            var healed = _damageable.ChangeDamage(ent, healing.Damage * _damageable.UniversalTopicalsHealModifier, true, origin: args.User);
+            healingLeft -= healed;
         }
 
         var isAnyTypeFullyConsumed = healingLeft.DamageDict.Any(d => d.Value == 0);

@@ -1,5 +1,4 @@
 // <Trauma>
-using System.Linq;
 using Content.Goobstation.Shared.Loudspeaker.Events;
 using Content.Goobstation.Shared.Radio;
 using Content.Server._EinsteinEngines.Language;

@@ -39,25 +39,13 @@
     # scale: 1.2, 1.2 # Goobstation: port EE height/width sliders
   - type: Damageable
     damageModifierSet: Oni
-  - type: PlayerToolModifier
-    pryTimeMultiplier: 0.6
-  - type: PlayerAccuracyModifier
-    blacklist:
-      components:
-      - DamageBoostOnMarker
-      - LeechOnMarker
-      - ArcaneBarrage
-      tags:
-      - WizardWand
-      - WizardStaff
-  - type: BonusMeleeDamage
-    damageModifierSet:
+  - type: Oni
+    modifiers:
       coefficients:
-        Blunt: 1.1
-        Slash: 1.1
-        Piercing: 1.1
-        Asphyxiation: 1.1
-        Structural: 1.1
+        Blunt: 1.35
+        Slash: 1.2
+        Piercing: 1.2
+        Structural: 1.35
   - type: Body
     prototype: Oni
   - type: Fixtures

@@ -6,7 +6,7 @@ using Content.Server.AlertLevel;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Chat.Systems;
 using Content.Server.Ghost;
-using Content.Server.Light.EntitySystems;
+using Content.Shared.Light.EntitySystems;
 using Content.Server.Station.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Atmos;
@@ -30,7 +30,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using FixedPoint2 = Content.Goobstation.Maths.FixedPoint.FixedPoint2;
 using System.Linq;
-using Content.Server.Light.Components;
+using Content.Shared.Light.Components;
 using Robust.Server.GameObjects;
 
 namespace Content.Goobstation.Server.Slasher.Systems;
@@ -59,7 +59,7 @@ public sealed class SlasherSoulStealSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly PoweredLightSystem _light = default!;
+    [Dependency] private readonly SharedPoweredLightSystem _light = default!;
 
     public override void Initialize()
     {

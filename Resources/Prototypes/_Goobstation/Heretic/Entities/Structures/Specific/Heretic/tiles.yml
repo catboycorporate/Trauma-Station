@@ -99,7 +99,7 @@
           components:
           - Heretic
           - Ghoul
-        guidebookComponentName: entity-condition-guidebook-heretic-or-ghoul
+        guidebookText: entity-condition-guidebook-heretic-or-ghoul
   - type: Transform
     anchored: true
   - type: Physics
