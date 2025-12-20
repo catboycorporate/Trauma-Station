@@ -21,10 +21,11 @@
         maxVol: 0 # prevent any funnies
   - type: VialHypospray
     slot: vial
-  - type: Hypospray
-    transferAmount: 5
-    onlyAffectsMobs: false
-    injectOnly: true # take the vial out chuddy
+  - type: Injector
+    currentTransferAmount: 5
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
   - type: UseDelay
     delay: 0.5
   - type: Appearance
