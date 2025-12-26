@@ -1,26 +1,28 @@
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Goobstation.Shared.Slasher.Components;
 using Content.Goobstation.Shared.Slasher.Events;
+using Content.Shared.Actions;
 using Content.Shared.Cuffs;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
+using Content.Shared.Cuffs;
 using Content.Shared.Cuffs.Components;
-using Content.Shared.Actions;
-using Content.Shared.Administration.Systems;
-using Content.Shared.Mobs.Systems;
+using Content.Shared.Popups;
+using Content.Shared.Rejuvenate;
+using Robust.Shared.Audio.Systems;
 
-namespace Content.Goobstation.Server.Slasher.Systems;
+namespace Content.Goobstation.Shared.Slasher.Systems;
 
-// TODO: this can all go in shared
 public sealed class SlasherRegenerateSystem : EntitySystem
 {
     [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
     [Dependency] private readonly SharedCuffableSystem _cuffs = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly RejuvenateSystem _rejuvenate = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
@@ -52,7 +54,14 @@ public sealed class SlasherRegenerateSystem : EntitySystem
         if (args.Handled)
             return;
 
-        _rejuvenate.PerformRejuvenate(uid);
+        // Check if a soul is available to use
+        if (!comp.HasSoulAvailable)
+        {
+            _popup.PopupPredicted(Loc.GetString("slasher-regenerate-no-soul"), uid, uid);
+            return;
+        }
+
+        RaiseLocalEvent(uid, new RejuvenateEvent());
 
         TryInjectReagent(uid, comp);
 
@@ -63,6 +72,17 @@ public sealed class SlasherRegenerateSystem : EntitySystem
             _cuffs.Uncuff(uid, uid, cuff, cuffs);
             QueueDel(cuff);
         }
+
+        // Spawn the visual and light effect entity
+        var effectEnt = Spawn(comp.RegenerateEffect, _transform.GetMapCoordinates(uid));
+        _transform.SetParent(effectEnt, uid);
+
+        // Play sound effect
+        _audio.PlayPredicted(comp.RegenerateSound, uid, uid);
+
+        // Consume the soul
+        comp.HasSoulAvailable = false;
+        Dirty(uid, comp);
 
         args.Handled = true;
     }
@@ -77,5 +97,17 @@ public sealed class SlasherRegenerateSystem : EntitySystem
         var solution = new Solution();
         solution.AddReagent(comp.Reagent, FixedPoint2.New(comp.ReagentAmount));
         _bloodstream.TryAddToBloodstream(target, solution);
+    }
+
+    /// <summary>
+    /// Grants a soul to use for regenerate. Called when the slasher successfully steals a soul in soulsteal.
+    /// </summary>
+    public void GrantSoul(EntityUid uid, SlasherRegenerateComponent? comp = null)
+    {
+        if (!Resolve(uid, ref comp))
+            return;
+
+        comp.HasSoulAvailable = true;
+        Dirty(uid, comp);
     }
 }
