@@ -1054,3 +1054,9 @@ Entries:
       message: Armory Alert level safes standardized to match Fland
   id: 124
   time: '2026-01-04T20:53:55.0000000+00:00'
+- author: deltanedas
+  changes:
+    - type: Add
+      message: You can now build wooden crosses to crucify people with.
+  id: 125
+  time: '2026-01-04T20:54:02.0000000+00:00'
