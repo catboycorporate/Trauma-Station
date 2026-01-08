@@ -1102,3 +1102,9 @@ Entries:
       message: Added Xenobio to Fland
   id: 130
   time: '2026-01-08T15:01:37.0000000+00:00'
+- author: deltanedas
+  changes:
+    - type: Tweak
+      message: Missing a shove still does the effect where you clicked anyway.
+  id: 131
+  time: '2026-01-08T15:54:35.0000000+00:00'
