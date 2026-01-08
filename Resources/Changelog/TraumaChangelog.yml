@@ -1108,3 +1108,11 @@ Entries:
       message: Missing a shove still does the effect where you clicked anyway.
   id: 131
   time: '2026-01-08T15:54:35.0000000+00:00'
+- author: deltanedas
+  changes:
+    - type: Add
+      message: Added wizden mail.
+    - type: Remove
+      message: Removed stinky nyano mail.
+  id: 132
+  time: '2026-01-08T16:46:47.0000000+00:00'
