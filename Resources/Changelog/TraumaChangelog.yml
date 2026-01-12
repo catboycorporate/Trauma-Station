@@ -1210,3 +1210,17 @@ Entries:
       message: Removed extra SecTechFab on Fland
   id: 143
   time: '2026-01-12T03:19:53.0000000+00:00'
+- author: Armok
+  changes:
+    - type: Add
+      message: 'Food now rots into slop if left out of refrigeration '
+    - type: Add
+      message: >-
+        Slop will rot away, deleting excess entities, it has a chance to spawn a
+        roach when rotted.
+    - type: Fix
+      message: Roaches no longer randomly die and are poison immune.
+    - type: Fix
+      message: Roaches go around and eat other food, clearing up more entities.
+  id: 144
+  time: '2026-01-12T04:56:55.0000000+00:00'
