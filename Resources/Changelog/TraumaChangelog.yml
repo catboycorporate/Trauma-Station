@@ -1270,3 +1270,11 @@ Entries:
         (Hair/Facial Hair Special) to apply them.
   id: 150
   time: '2026-01-12T12:47:11.0000000+00:00'
+- author: ciaran
+  changes:
+    - type: Add
+      message: >-
+        other people still touching a body when a defib is used will be shocked
+        too
+  id: 151
+  time: '2026-01-12T14:55:58.0000000+00:00'
