@@ -1296,3 +1296,17 @@ Entries:
       message: Vending machines give you cancer
   id: 154
   time: '2026-01-12T21:53:12.0000000+00:00'
+- author: Nousagi37
+  changes:
+    - type: Add
+      message: Cog has been localized with Trauma content.
+    - type: Tweak
+      message: >-
+        Cog botany has been moved above Kitchen, and bigger maintenance in the
+        place of old botany
+    - type: Tweak
+      message: Medical maintenance is a bit bigger
+    - type: Tweak
+      message: Xenobio now has a freezer and a biomass reclaimer.
+  id: 155
+  time: '2026-01-13T07:25:57.0000000+00:00'
