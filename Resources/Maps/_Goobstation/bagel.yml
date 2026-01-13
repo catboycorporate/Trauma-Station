@@ -136679,6 +136679,8 @@ entities:
     - type: Transform
       pos: 22.5,-11.5
       parent: 2
+    - type: StepTriggerCleanup
+      stepTrigger: 787
   - uid: 20876
     components:
     - type: Transform
