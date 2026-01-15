@@ -889,10 +889,10 @@
     # <Trauma>
     - item: MedicalHyposprayFilled # hypo replaces chud injector
     - item: Syringe # for patients with no hypoport
-    - item: BaseChemistryEmptyVial
+    - item: ChemistryEmptyVial
       hand:
         emptyLabel: borg-slot-small-containers-empty
-        emptyRepresentative: BaseChemistryEmptyVial
+        emptyRepresentative: ChemistryEmptyVial
         whitelist:
           tags:
           - CentrifugeCompatible
@@ -1052,10 +1052,10 @@
     - item: SprayBottle
     - item: GasAnalyzer
     - item: BorgDropper
-    - item: BaseChemistryEmptyVial
+    - item: ChemistryEmptyVial
       hand:
         emptyLabel: borg-slot-small-containers-empty
-        emptyRepresentative: BaseChemistryEmptyVial
+        emptyRepresentative: ChemistryEmptyVial
         whitelist:
           components:
           - FitsInDispenser
