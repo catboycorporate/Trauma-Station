@@ -1500,3 +1500,9 @@ Entries:
       message: Fixed Box station's power in medbay.
   id: 179
   time: '2026-01-16T19:38:27.0000000+00:00'
+- author: TurboTrackerss14
+  changes:
+    - type: Fix
+      message: Tinned food and lollypops no longer rot into slop.
+  id: 180
+  time: '2026-01-16T19:55:09.0000000+00:00'
