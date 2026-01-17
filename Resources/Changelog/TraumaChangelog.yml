@@ -1512,3 +1512,9 @@ Entries:
       message: Boris Module unlock moved to a tier 2 research.
   id: 181
   time: '2026-01-17T09:21:36.0000000+00:00'
+- author: JohnJJohn
+  changes:
+    - type: Add
+      message: 'Added Trauma by shellknight to lobby and vinyl '
+  id: 182
+  time: '2026-01-17T09:22:03.0000000+00:00'
