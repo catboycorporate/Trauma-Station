@@ -1518,3 +1518,11 @@ Entries:
       message: 'Added Trauma by shellknight to lobby and vinyl '
   id: 182
   time: '2026-01-17T09:22:03.0000000+00:00'
+- author: MayasMischief
+  changes:
+    - type: Tweak
+      message: BZ made from invisible instakill gas to visible instakill gas.
+    - type: Remove
+      message: Removed BSO
+  id: 183
+  time: '2026-01-18T07:18:04.0000000+00:00'
