@@ -1526,3 +1526,11 @@ Entries:
       message: Removed BSO
   id: 183
   time: '2026-01-18T07:18:04.0000000+00:00'
+- author: JohnJJohn
+  changes:
+    - type: Add
+      message: Added Robotics tech tree section
+    - type: Tweak
+      message: Moved the tech tree around to make it look better
+  id: 184
+  time: '2026-01-18T07:50:43.0000000+00:00'
