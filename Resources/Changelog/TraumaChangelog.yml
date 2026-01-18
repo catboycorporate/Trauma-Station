@@ -1548,3 +1548,11 @@ Entries:
       message: Renamed Ammonia gas to Miasma.
   id: 186
   time: '2026-01-18T08:53:47.0000000+00:00'
+- author: deltanedas
+  changes:
+    - type: Add
+      message: >-
+        Breathing miasma can now give you diseases, as predicted by 19th century
+        doctors.
+  id: 187
+  time: '2026-01-18T09:43:13.0000000+00:00'
