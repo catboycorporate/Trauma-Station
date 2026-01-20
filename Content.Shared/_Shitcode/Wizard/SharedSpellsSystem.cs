@@ -44,7 +44,7 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.EntityEffects;
 using Content.Shared.Examine;
 using Content.Shared.Eye.Blinding.Components;
-using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.FixedPoint;
 using Content.Shared.Ghost;
 using Content.Shared.Gibbing;
 using Content.Shared.Hands.Components;

@@ -3,7 +3,7 @@ using Content.Shared._Shitmed.Medical;
 using Content.Shared._Shitmed.Medical.HealthAnalyzer;
 using Content.Shared._Shitmed.Targeting;
 // </Trauma>
-using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.FixedPoint;
 using Content.Shared.Medical.Cryogenics;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;

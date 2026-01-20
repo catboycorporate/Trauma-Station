@@ -39,7 +39,7 @@ using Content.Shared.Abilities.Mime;
 using Content.Shared.Chat;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Coordinates.Helpers;
-using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.FixedPoint;
 using Content.Shared.Emp;
 using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;

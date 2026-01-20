@@ -19,7 +19,7 @@ using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Standing;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
-using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.FixedPoint;
 // </Trauma>
 using System.Linq;
 using System.Numerics;

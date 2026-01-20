@@ -1,6 +1,6 @@
 using Content.Shared.Atmos.Components;
 using Content.Shared.Chemistry.Reagent;
-using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.FixedPoint;
 using Content.Shared.MedicalScanner;
 using Content.Shared.Tools;
 using Robust.Shared.Containers;

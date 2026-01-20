@@ -12,7 +12,7 @@ using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
-using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.FixedPoint;
 using Content.Shared.MedicalScanner;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface.Controls;

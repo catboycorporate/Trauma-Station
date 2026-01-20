@@ -1,6 +1,6 @@
 // <Trauma>
 using Content.Shared._Shitmed.Medical.HealthAnalyzer;
-using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.FixedPoint;
 // </Trauma>
 using Content.Server.Medical.Components;
 using Content.Shared.Body.Components;

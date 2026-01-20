@@ -2,7 +2,7 @@
 using Content.Shared._Shitmed.Medical.HealthAnalyzer;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds;
 using Content.Shared._Shitmed.Targeting;
-using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.FixedPoint;
 // </Trauma>
 using Robust.Shared.Serialization;
 
