@@ -1623,3 +1623,13 @@ Entries:
       message: Fixed cauterized wound popup appearing for everyone
   id: 196
   time: '2026-01-20T19:03:11.0000000+00:00'
+- author: TurboTrackerss14
+  changes:
+    - type: Remove
+      message: Rulebreak bait (ooc in ic) ionlaws.
+    - type: Remove
+      message: Goob self-insert plushies/posters.
+    - type: Remove
+      message: yakub references.
+  id: 197
+  time: '2026-01-20T20:31:21.0000000+00:00'
