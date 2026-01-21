@@ -1639,3 +1639,9 @@ Entries:
       message: reinforced and normal secret wall sprites
   id: 198
   time: '2026-01-20T20:48:14.0000000+00:00'
+- author: JohnJJohn
+  changes:
+    - type: Fix
+      message: Fixed ED-209 being uncraftable
+  id: 199
+  time: '2026-01-21T00:20:24.0000000+00:00'
