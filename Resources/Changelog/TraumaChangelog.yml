@@ -1685,3 +1685,9 @@ Entries:
       message: Clowns now speak in comic sans.
   id: 204
   time: '2026-01-21T14:28:55.0000000+00:00'
+- author: deltanedas
+  changes:
+    - type: Remove
+      message: Removed FTL drives.
+  id: 205
+  time: '2026-01-21T15:36:03.0000000+00:00'
