@@ -1779,3 +1779,10 @@ Entries:
   id: 217
   time: '2026-01-23T08:45:16.0000000+00:00'
   url: https://github.com/Trauma-Station/Trauma-Station/pull/463
+- author: deltanedas
+  changes:
+  - type: Tweak
+    message: Predicted reverse beartraps.
+  id: 218
+  time: '2026-01-23T12:56:14.0000000+00:00'
+  url: https://github.com/Trauma-Station/Trauma-Station/pull/464
