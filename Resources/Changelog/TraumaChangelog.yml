@@ -1848,3 +1848,10 @@ Entries:
   id: 226
   time: '2026-01-24T23:13:15.0000000+00:00'
   url: https://github.com/Trauma-Station/Trauma-Station/pull/485
+- author: JohnJJohn
+  changes:
+  - type: Add
+    message: Added T-45 P.O.W.A.R Armor, a new mech for revs
+  id: 227
+  time: '2026-01-24T23:14:35.0000000+00:00'
+  url: https://github.com/Trauma-Station/Trauma-Station/pull/456
