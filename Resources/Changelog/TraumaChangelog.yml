@@ -1807,3 +1807,10 @@ Entries:
   id: 221
   time: '2026-01-24T13:25:38.0000000+00:00'
   url: https://github.com/Trauma-Station/Trauma-Station/pull/476
+- author: deltanedas
+  changes:
+  - type: Tweak
+    message: Signing paper is now fully predicted.
+  id: 222
+  time: '2026-01-24T19:26:33.0000000+00:00'
+  url: https://github.com/Trauma-Station/Trauma-Station/pull/480
