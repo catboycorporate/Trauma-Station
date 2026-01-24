@@ -1800,3 +1800,10 @@ Entries:
   id: 220
   time: '2026-01-23T22:27:43.0000000+00:00'
   url: https://github.com/Trauma-Station/Trauma-Station/pull/471
+- author: deltanedas
+  changes:
+  - type: Tweak
+    message: Made hardgrabs feel less jank.
+  id: 221
+  time: '2026-01-24T13:25:38.0000000+00:00'
+  url: https://github.com/Trauma-Station/Trauma-Station/pull/476
