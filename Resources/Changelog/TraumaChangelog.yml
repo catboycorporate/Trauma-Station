@@ -1927,3 +1927,18 @@ Entries:
   id: 236
   time: '2026-01-25T19:17:32.0000000+00:00'
   url: https://github.com/Trauma-Station/Trauma-Station/pull/486
+- author: Armok
+  changes:
+  - type: Tweak
+    message: 'Warden shotgun: Damage decreased'
+  - type: Tweak
+    message: 'Warden shotgun: Ammo Cap increased'
+  - type: Tweak
+    message: >-
+      adjusted almost every single laser weapon to be in line with laser sec and
+      occupy its own niche
+  - type: Add
+    message: grille and lattice sprites
+  id: 237
+  time: '2026-01-25T19:49:45.0000000+00:00'
+  url: https://github.com/Trauma-Station/Trauma-Station/pull/488
